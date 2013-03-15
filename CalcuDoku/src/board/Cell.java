@@ -3,7 +3,7 @@ package board;
 import group.Group;
 
 public class Cell {
-	private int number;
+	private int number = 0;
 	private Group group;
 	public Cell() {
 		

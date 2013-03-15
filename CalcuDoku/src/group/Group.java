@@ -11,7 +11,7 @@ public abstract class Group {
 	private int result;
 	//board max number
 	private int boardMax;
-	private List<Cell> cells;
+	private List<Cell> cells = new ArrayList<>();
 	protected List<List<Integer>> possibleLists;
 	
 	public Group(int result, int boardMax) {
@@ -35,7 +35,9 @@ public abstract class Group {
 		setCell(c);
 	}
 	
-	public abstract void setCell(Cell c);
+	public void setCell(Cell c){
+		c.setGroup(this);
+	}
 	
 	public void addCells(List<Cell> cells){
 		for(Cell c:cells){
@@ -74,6 +76,10 @@ public abstract class Group {
 			s.addAll(l);
 		}
 		return new ArrayList<>(s);
+	}
+	
+	public List<List<Integer>> getPossibleLists(){
+		return possibleLists;	
 	}
 	
 	protected abstract void generatePossibles();

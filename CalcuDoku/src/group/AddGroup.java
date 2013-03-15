@@ -1,7 +1,6 @@
 package group;
 
 
-import board.Cell;
 
 public class AddGroup extends Group{
 	
@@ -26,10 +25,7 @@ public class AddGroup extends Group{
 		
 	}
 
-	@Override
-	public void setCell(Cell c) {
-		c.setGroup(this);
-	}
+
 	
 
 }

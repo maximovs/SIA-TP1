@@ -27,10 +27,7 @@ public class MultiplyGroup extends Group{
 		
 	}
 
-	@Override
-	public void setCell(Cell c) {
-		c.setGroup(this);
-	}
+
 	
 
 }

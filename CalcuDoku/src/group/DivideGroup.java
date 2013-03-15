@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 
-import board.Cell;
 
 public class DivideGroup extends Group{
 
@@ -40,10 +39,7 @@ public class DivideGroup extends Group{
 		}
 	}
 
-	@Override
-	public void setCell(Cell c) {
-		c.setGroup(this);
-	}
+
 
 
 }

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 
-import board.Cell;
 
 public class SubstractGroup extends Group{
 
@@ -40,10 +39,6 @@ public class SubstractGroup extends Group{
 		}
 	}
 
-	@Override
-	public void setCell(Cell c) {
-		c.setGroup(this);
-	}
 
 
 }
