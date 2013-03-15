@@ -2,12 +2,22 @@ package group;
 
 import java.util.List;
 
-public class AddGroup implements Group{
+import board.Cell;
 
+public class AddGroup extends Group{
+	private List<Cell> cells;
+	
+	public AddGroup(int result) {
+		super(result);
+	}
+	
 	@Override
 	public boolean satisfies() {
-		// TODO Auto-generated method stub
-		return false;
+		int r=0;
+		for(Cell c:cells){
+			r+=c.getNumber();
+		}
+		return equalsResult(r);
 	}
 
 	@Override

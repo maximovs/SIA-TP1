@@ -11,6 +11,9 @@ public class Cell {
 	public void setGroup(Group g){
 		group = g;
 	}
+	public Group getGroup(){
+		return group;
+	}
 	
 	public void setNumber(int number){
 		this.number = number;
