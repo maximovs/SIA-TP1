@@ -4,18 +4,18 @@ import java.util.List;
 
 import board.Cell;
 
-public class AddGroup extends Group{
+public class MultiplyGroup extends Group{
 	private List<Cell> cells;
 	
-	public AddGroup(int result, int n) {
+	public MultiplyGroup(int result, int n) {
 		super(result, n);
 	}
 	
 	@Override
 	public boolean satisfies() {
-		int r=0;
+		int r=1;
 		for(Cell c:cells){
-			r+=c.getNumber();
+			r*=c.getNumber();
 		}
 		return equalsResult(r);
 	}
