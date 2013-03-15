@@ -26,9 +26,15 @@ public class MultiplyGroup extends Group{
 		return null;
 	}
 
+
 	@Override
-	public void addCell(Cell c) {
-		cells.add(c);
+	public void generatePossibles() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCell(Cell c) {
 		c.setGroup(this);
 	}
 	

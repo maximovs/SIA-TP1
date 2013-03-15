@@ -5,7 +5,6 @@ import java.util.List;
 import board.Cell;
 
 public class AddGroup extends Group{
-	private List<Cell> cells;
 	
 	public AddGroup(int result, int n) {
 		super(result, n);
@@ -14,8 +13,8 @@ public class AddGroup extends Group{
 	@Override
 	public boolean satisfies() {
 		int r=0;
-		for(Cell c:cells){
-			r+=c.getNumber();
+		for(Integer i:getCellNumbers()){
+			r+=i;
 		}
 		return equalsResult(r);
 	}
@@ -26,9 +25,17 @@ public class AddGroup extends Group{
 		return null;
 	}
 
+
+	
+	
 	@Override
-	public void addCell(Cell c) {
-		cells.add(c);
+	public void generatePossibles() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setCell(Cell c) {
 		c.setGroup(this);
 	}
 	

@@ -1,5 +1,6 @@
 package group;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import board.Cell;
@@ -7,23 +8,49 @@ import board.Cell;
 public abstract class Group {
 	private int result;
 	//board max number
-	private int n;
-	public Group(int result, int n) {
+	private int boardMax;
+	private List<Cell> cells;
+	protected List<List<Integer>> possibleLists;
+	
+	public Group(int result, int boardMax) {
 		this.result= result;
-		this.n = n;
+		this.boardMax = boardMax;
+		generatePossibles();
 	}
 	public boolean equalsResult(int r){
 		return result==r;
 	}
+	public int getResult(){
+		return result;
+	}
 	public int getBoardMax(){
-		return n;
+		return boardMax;
 	}
 	public abstract boolean satisfies();
-	public abstract void addCell(Cell c);
+	
+	public void addCell(Cell c) {
+		cells.add(c);
+		setCell(c);
+	}
+	
+	public abstract void setCell(Cell c);
+	
 	public void addCells(List<Cell> cells){
 		for(Cell c:cells){
 			addCell(c);
 		}
 	}
+	
+	public List<Integer> getCellNumbers(){
+		List<Integer> l = new ArrayList<>();
+		for(Cell c: cells){
+			if(c.getNumber()!=0){
+				l.add(c.getNumber());
+			}
+		}
+		return l;
+	}
+	
 	public abstract List<Integer> getPossibles();
+	public abstract void generatePossibles();
 }
