@@ -1,7 +1,9 @@
 package group;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import board.Cell;
 
@@ -51,6 +53,28 @@ public abstract class Group {
 		return l;
 	}
 	
-	public abstract List<Integer> getPossibles();
-	public abstract void generatePossibles();
+	public List<Integer> getPossibles() {
+		Set<Integer> s = new HashSet<>();
+		List<List<Integer>> lists ;
+		if(getCellNumbers().isEmpty()){
+			lists = possibleLists;
+		}else{
+			lists = new ArrayList<>();
+			for(List<Integer> l: possibleLists){
+				lists.add(l);
+				for(Integer i: getCellNumbers()){
+					if(!l.contains(i)){
+						lists.remove(l);
+						break;
+					}
+				}
+			}
+		}
+		for(List<Integer> l: lists){
+			s.addAll(l);
+		}
+		return new ArrayList<>(s);
+	}
+	
+	protected abstract void generatePossibles();
 }

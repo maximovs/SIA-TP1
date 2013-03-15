@@ -20,15 +20,9 @@ public class MultiplyGroup extends Group{
 		return equalsResult(r);
 	}
 
-	@Override
-	public List<Integer> getPossibles() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 	@Override
-	public void generatePossibles() {
+	protected void generatePossibles() {
 		// TODO Auto-generated method stub
 		
 	}

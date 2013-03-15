@@ -7,9 +7,9 @@ import java.util.List;
 
 import board.Cell;
 
-public class DivideGroup extends Group{
+public class SubstractGroup extends Group{
 
-	public DivideGroup(int result, int n) {
+	public SubstractGroup(int result, int n) {
 		super(result, n);
 	}
 
@@ -20,8 +20,7 @@ public class DivideGroup extends Group{
 		if(l.size()!=2) return false;
 		Collections.sort(l);
 		/* Deben dar un entero*/
-		if(l.get(1)%l.get(0)!=0) return false;
-		return equalsResult(l.get(1)/l.get(0));
+		return equalsResult(l.get(1)-l.get(0));
 	}
 
 
@@ -31,11 +30,12 @@ public class DivideGroup extends Group{
 		ArrayList<Integer> aux;
 		int r = getResult();
 		for(int i = getBoardMax(); i>0 ; i--){
-			if(i%r==0){
+			if(i-r>0){
 				aux = new ArrayList<>();
 				aux.add(i);
-				aux.add(i/r);
+				aux.add(i-r);
 				possibleLists.add(aux);
+				break;
 			}
 		}
 	}

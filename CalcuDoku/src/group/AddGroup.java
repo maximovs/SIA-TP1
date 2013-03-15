@@ -1,6 +1,5 @@
 package group;
 
-import java.util.List;
 
 import board.Cell;
 
@@ -19,17 +18,10 @@ public class AddGroup extends Group{
 		return equalsResult(r);
 	}
 
-	@Override
-	public List<Integer> getPossibles() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 	
-	
 	@Override
-	public void generatePossibles() {
+	protected void generatePossibles() {
 		// TODO Auto-generated method stub
 		
 	}
