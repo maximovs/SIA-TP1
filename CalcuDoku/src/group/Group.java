@@ -9,15 +9,15 @@ import board.Cell;
 
 public abstract class Group {
 	private int result;
-	private int cantCells;
+	private int quantCells;
 	private int boardMax;
 	private List<Cell> cells = new ArrayList<>();
 	protected List<List<Integer>> possibleLists;
 	
-	public Group(int result, int boardMax, int cantCells) {
+	public Group(int result, int boardMax, int size) {
 		this.result= result;
 		this.boardMax = boardMax;
-		this.cantCells = cantCells;
+		this.quantCells = size;
 		generatePossibles();
 	}
 	public boolean equalsResult(int r){
@@ -77,6 +77,10 @@ public abstract class Group {
 			s.addAll(l);
 		}
 		return new ArrayList<>(s);
+	}
+	
+	public int size(){
+		return quantCells;
 	}
 	
 	public List<Cell> getCells(){
