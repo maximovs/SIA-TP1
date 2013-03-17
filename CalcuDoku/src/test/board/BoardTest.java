@@ -7,6 +7,8 @@ import group.Group;
 import org.junit.Before;
 import org.junit.Test;
 
+import parser.Parser;
+
 import board.Board;
 public class BoardTest {
 	Board board = null;
@@ -58,6 +60,13 @@ public class BoardTest {
 		assertTrue(board.completed());
 		assertTrue(board.isFinished());
 	}
+	
+	@Test
+	public void returnsCorrectPossibles(){		
+		board = Parser.parse("levels/QuadOp6x6");
+	}
+	
+	
 	
 
 }
