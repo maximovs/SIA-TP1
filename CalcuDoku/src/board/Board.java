@@ -20,6 +20,63 @@ public class Board {
 				}
 			}
 	}
+	
+	public boolean completed(){
+		for(int i = 0; i < size; i++){
+			for(int j = 0; i < size; j++){
+				if(cells[i][j].getNumber() == 0){
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean isFinished(){
+		boolean cols = columnsFinished();
+		boolean rows = rowsFinished();
+		boolean groups = groupsFinished();
+		return cols && rows && groups;
+	}
+
+	private boolean groupsFinished() {
+		for(Group g: groups){
+			if(!g.satisfies()){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean rowsFinished() {
+		ArrayList<Integer> numbers = null;
+		for(int i = 0; i < size; i++){
+			numbers = new ArrayList<>();
+			for(int j = 0; j < size; j++){
+				Integer cellNumber = cells[i][j].getNumber();
+				if(numbers.contains(cellNumber)){
+					return false;
+				}
+				numbers.add(cellNumber);
+			}
+		}
+		return true;
+	}
+
+	private boolean columnsFinished() {
+		ArrayList<Integer> numbers = null;
+		for(int j = 0; j < size; j++){
+			numbers = new ArrayList<>();
+			for(int i = 0; i < size; i++){
+				Integer cellNumber = cells[i][j].getNumber();
+				if(numbers.contains(cellNumber)){
+					return false;
+				}
+				numbers.add(cellNumber);
+			}
+		}
+		return true;
+	}
 
 	public void addGroup(Group group) {
 		groups.add(group);
