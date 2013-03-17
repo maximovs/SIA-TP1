@@ -13,5 +13,7 @@ public interface GPSState {
 	 * false if they are different.
 	 */
 	boolean compare(GPSState state);
+
+	boolean isFinished();
 	
 }

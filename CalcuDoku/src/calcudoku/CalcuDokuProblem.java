@@ -12,23 +12,20 @@ import gps.api.GPSState;
 
 public class CalcuDokuProblem implements GPSProblem {
  
+	String levelFile;
+	
 	public CalcuDokuProblem(String levelFile){
 		super();
-		Parser parser = new Parser();
-		Board board = parser.parse(levelFile);
-		
-		
+		this.levelFile = levelFile;
 	}
 	
 	@Override
 	public GPSState getInitState() {
-		return null;
-	}
-
-	@Override
-	public GPSState getGoalState() {
-		// TODO Auto-generated method stub
-		return null;
+		Board b = Parser.parse(levelFile);
+		if(b == null){
+			return null;
+		}
+		return new CalcuDokuState(b);
 	}
 
 	@Override

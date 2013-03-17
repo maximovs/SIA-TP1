@@ -38,6 +38,9 @@ public class Board {
 	}
 	
 	public boolean isFinished(){
+		if(!completed()){
+			return false;
+		}
 		boolean cols = columnsFinished();
 		boolean rows = rowsFinished();
 		boolean groups = groupsFinished();

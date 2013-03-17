@@ -56,7 +56,7 @@ public class Parser {
 				result = Integer.valueOf(splited[0]);
 				operation = splited[1];
 				cellsCant = Integer.valueOf(splited[2]);
-				if(blockSize == null){
+				if(cellsCant == null){
 					System.out.println("ARCHIVO INCORRECTO!");
 					return null;
 				}
@@ -70,7 +70,7 @@ public class Parser {
 				}
 				board.addGroup(group);
 				
-				String cells[] = splited[2].split(";");
+				String cells[] = splited[3].split(";");
 				for(String cell: cells){
 					String[] coord = cell.split(":");
 					if(coord.length != 2){
