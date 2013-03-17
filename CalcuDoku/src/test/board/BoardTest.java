@@ -1,9 +1,15 @@
 package test.board;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import group.DivideGroup;
 import group.Group;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -64,6 +70,48 @@ public class BoardTest {
 	@Test
 	public void returnsCorrectPossibles(){		
 		board = Parser.parse("levels/QuadOp6x6");
+		//chequeo -
+		board.setCellValue(0, 0, 2);
+		board.setCellValue(0, 3, 4);
+		board.setCellValue(0, 2, 3);
+		board.setCellValue(4, 1, 3);
+		List<Integer> l = new ArrayList<>();
+		l.add(1);
+		l.add(5);
+		Assert.assertEquals(l, board.getPossibbles(0, 1));
+		//chequeo *
+		board.setCellValue(4, 3, 6);
+		board.setCellValue(2, 4, 6);
+		l = new ArrayList<>();
+		l.add(2);
+		l.add(5);
+		Assert.assertEquals(l,board.getPossibbles(1, 3));
+		//chequeo +
+		board.setCellValue(5, 5, 4);
+		board.setCellValue(2, 2, 1);
+		l = new ArrayList<>();
+		l.add(2);
+		l.add(5);
+		Assert.assertEquals(l,board.getPossibbles(5, 2));
+		//chequeo + (vacío)
+		l = new ArrayList<>();
+		l.add(2);
+		Assert.assertEquals(l,board.getPossibbles(4, 4));
+		
+		//chequeo /
+		l = new ArrayList<>();
+		l.add(3);
+		Assert.assertEquals(l,board.getPossibbles(5, 3));
+		//chequeo /
+		board.setCellValue(4, 3, 0);
+		l = new ArrayList<>();
+		l.add(1);
+		l.add(2);
+		l.add(3);
+		l.add(6);
+		System.out.println(board.getPossibbles(5, 3));
+		Assert.assertEquals(l,board.getPossibbles(5, 3));
+		
 	}
 	
 	
