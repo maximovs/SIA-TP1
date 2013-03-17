@@ -43,4 +43,9 @@ public class GPSNode {
 		}
 		return this.parent.getSolution() + "\n" + this.state;
 	}
+
+	
+		
+		
+	
 }

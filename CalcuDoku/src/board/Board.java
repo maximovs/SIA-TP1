@@ -3,10 +3,42 @@ package board;
 import group.Group;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Board {
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(cells);
+		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
+		result = prime * result + size;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		if (!Arrays.deepEquals(cells, other.cells))
+			return false;
+		if (groups == null) {
+			if (other.groups != null)
+				return false;
+		} else if (!groups.equals(other.groups))
+			return false;
+		if (size != other.size)
+			return false;
+		return true;
+	}
+
 	int size;
 	Cell[][] cells;
 	ArrayList<Group> groups;
@@ -86,6 +118,10 @@ public class Board {
 		return true;
 	}
 
+	public int getSize(){
+		return size;
+	}
+	
 	public void addGroup(Group group) {
 		groups.add(group);
 	}

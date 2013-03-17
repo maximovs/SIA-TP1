@@ -1,11 +1,15 @@
 package calcudoku;
 
+import java.util.ArrayList;
+
 import gps.api.GPSRule;
 import gps.api.GPSState;
 import gps.exception.NotAppliableException;
 
 public class CalcuDokuRule implements GPSRule {
 
+	int value;
+	
 	@Override
 	public Integer getCost() {
 		// TODO Auto-generated method stub
@@ -20,8 +24,8 @@ public class CalcuDokuRule implements GPSRule {
 
 	@Override
 	public GPSState evalRule(GPSState state) throws NotAppliableException {
-		// TODO Auto-generated method stub
-		return null;
+		return new CalcuDokuState((CalcuDokuState)state, value);
+		
 	}
 
 }
