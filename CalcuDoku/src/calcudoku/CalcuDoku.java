@@ -1,3 +1,5 @@
+package calcudoku;
+
 import parser.Parser;
 import board.Board;
 
