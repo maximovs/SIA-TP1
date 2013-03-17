@@ -7,8 +7,8 @@ import board.Cell;
 public class MultiplyGroup extends Group{
 	private List<Cell> cells;
 	
-	public MultiplyGroup(int result, int n) {
-		super(result, n);
+	public MultiplyGroup(int result, int n, int s) {
+		super(result, n, s);
 	}
 	
 	@Override

@@ -28,6 +28,7 @@ public class Parser {
 		String line = null;
 		
 		Integer blockSize = null;
+		Integer cellsCant = null;
 		Integer result = null;
 		String operation = null;
 		
@@ -48,17 +49,22 @@ public class Parser {
 		try {
 			while((line = bufReader.readLine()) != null){
 				String splited[] = line.split(",");
-				if(splited.length != 3){
+				if(splited.length != 4){
 					System.out.println("ARCHIVO INCORRECTO!");
 					return null;
 				}
 				result = Integer.valueOf(splited[0]);
 				operation = splited[1];
+				cellsCant = Integer.valueOf(splited[2]);
+				if(blockSize == null){
+					System.out.println("ARCHIVO INCORRECTO!");
+					return null;
+				}
 				Group group;
 				switch(operation.charAt(0)){
 					case '/': group = new DivideGroup(result, blockSize);break;
-					case '*': group = new MultiplyGroup(result, blockSize);break;
-					case '+': group = new AddGroup(result, blockSize);break;
+					case '*': group = new MultiplyGroup(result, blockSize, cellsCant);break;
+					case '+': group = new AddGroup(result, blockSize, cellsCant);break;
 					case '-': group = new SubstractGroup(result, blockSize);break; 
 					default:  System.out.println("ARCHIVO INCORRECTO!");return null;
 				}

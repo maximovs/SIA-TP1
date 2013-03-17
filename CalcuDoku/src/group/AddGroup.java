@@ -4,8 +4,8 @@ package group;
 
 public class AddGroup extends Group{
 	
-	public AddGroup(int result, int n) {
-		super(result, n);
+	public AddGroup(int result, int n, int s) {
+		super(result, n, s);
 	}
 	
 	@Override

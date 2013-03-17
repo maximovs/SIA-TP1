@@ -9,7 +9,7 @@ import java.util.List;
 public class DivideGroup extends Group{
 
 	public DivideGroup(int result, int n) {
-		super(result, n);
+		super(result, n, 2);
 	}
 
 	@Override
