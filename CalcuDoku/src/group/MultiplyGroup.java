@@ -7,7 +7,6 @@ import java.util.List;
 import board.Cell;
 
 public class MultiplyGroup extends Group{
-	private List<Cell> cells;
 	
 	public MultiplyGroup(int result, int n, int size) {
 		super(result, n, size);
@@ -16,8 +15,8 @@ public class MultiplyGroup extends Group{
 	@Override
 	public boolean satisfies() {
 		int r=1;
-		for(Cell c:cells){
-			r*=c.getNumber();
+		for(Integer i:getCellNumbers()){
+			r*=i;
 		}
 		return equalsResult(r);
 	}
