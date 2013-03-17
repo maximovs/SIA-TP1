@@ -92,4 +92,11 @@ public abstract class Group {
 	}
 	
 	protected abstract void generatePossibles();
+	@Override
+	public String toString() {
+		return "Group [op= "+this.Operation()+", result=" + result + "]";
+	}
+	protected abstract String Operation();
+	
+	
 }

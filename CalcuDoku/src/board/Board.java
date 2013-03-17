@@ -111,13 +111,53 @@ public class Board {
 		return true;
 	}
 
-	public void print() {
-		for(int i = 0; i < size; i++){
+	public void printBoard() {
+		for(int i =0; i < size; i++){
+			System.out.print("-----");
+		}
+		System.out.println("-");
+		
+		for(int i = 0; i < size; i++){			
+			System.out.print("|");
 			for(int j = 0; j < size; j++){
-				System.out.print(cells[i][j].getGroup().getResult());
+				System.out.print(" " + cells[i][j].getNumber() + " ");
+				if(cells[i][j].getNumber() < 10) System.out.print(" ");
+				if((j+1 < size) && (cells[i][j].getGroup() != cells[i][j+1].getGroup())){
+					System.out.print("|");
+				} else if(j+1 < size){
+					System.out.print(" ");
 				}
-				System.out.println("");
+			
 			}
+			System.out.println("|");
+			if(i+1<size){
+				System.out.print("|");
+				for(int j = 0; j < size; j++){
+				
+					if((i+1 < size) && (cells[i][j].getGroup() != cells[i+1][j].getGroup())){
+						System.out.print("----");
+					} else {
+						System.out.print("    ");
+					}
+					if((j+1 < size) && (cells[i][j].getGroup() != cells[i][j+1].getGroup())){
+						System.out.print("|");
+					} else if(j+1 < size){
+						System.out.print("-");
+					}
+				}
+				System.out.println("|");
+			}			
+		}
+		for(int i =0; i < size; i++){
+			System.out.print("-----");
+		}
+		System.out.println("-");
+	}
+	
+	public void printGroups(){
+		for(Group g: this.groups){
+			System.out.println(g);
+		}
 	}
 	
 	private List<Integer> getPossiblesInColumn(int j){

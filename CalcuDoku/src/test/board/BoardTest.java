@@ -7,6 +7,8 @@ import group.Group;
 import org.junit.Before;
 import org.junit.Test;
 
+import parser.Parser;
+
 import board.Board;
 public class BoardTest {
 	Board board = null;
@@ -56,6 +58,42 @@ public class BoardTest {
 		board.setCellValue(1, 0, 1);
 		board.setCellValue(1, 1, 2);
 		assertTrue(board.completed());
+		assertTrue(board.isFinished());
+	}
+	
+	@Test
+	public void isFinished5X5(){		
+		board = Parser.parse("levels/5X5.txt");
+		board.setCellValue(0, 0, 4);
+		board.setCellValue(0, 1, 1);
+		board.setCellValue(0, 2, 5);
+		board.setCellValue(0, 3, 3);
+		board.setCellValue(0, 4, 2);
+
+		board.setCellValue(1, 0, 3);
+		board.setCellValue(1, 1, 2);
+		board.setCellValue(1, 2, 1);
+		board.setCellValue(1, 3, 5);
+		board.setCellValue(1, 4, 4);
+
+		board.setCellValue(2, 0, 5);
+		board.setCellValue(2, 1, 3);
+		board.setCellValue(2, 2, 2);
+		board.setCellValue(2, 3, 4);
+		board.setCellValue(2, 4, 1);
+
+		board.setCellValue(3, 0, 1);
+		board.setCellValue(3, 1, 5);
+		board.setCellValue(3, 2, 4);
+		board.setCellValue(3, 3, 2);
+		board.setCellValue(3, 4, 3);
+
+		board.setCellValue(4, 0, 2);
+		board.setCellValue(4, 1, 4);
+		board.setCellValue(4, 2, 3);
+		board.setCellValue(4, 3, 1);
+		board.setCellValue(4, 4, 5);
+		
 		assertTrue(board.isFinished());
 	}
 	

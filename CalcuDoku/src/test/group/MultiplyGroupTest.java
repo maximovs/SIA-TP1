@@ -50,5 +50,6 @@ public class MultiplyGroupTest {
 		Assert.assertEquals(m,g.getPossibleLists());
 		System.out.println(g.getPossibleLists());
 		System.out.println(g.getPossibles());
+		g.satisfies();
 	}
 }

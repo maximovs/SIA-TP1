@@ -38,6 +38,11 @@ public class SubstractGroup extends Group{
 		}
 	}
 
+	@Override
+	protected String Operation() {
+		return "-";
+	}
+
 
 
 }

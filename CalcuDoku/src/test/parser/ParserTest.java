@@ -21,5 +21,13 @@ public class ParserTest {
 		Board b = Parser.parse("levels/test.txt");
 		assertFalse(b == null);
 	}
+	
+	@Test
+	public void size5X5(){
+		Board b = Parser.parse("levels/5x5.txt");
+		assertTrue(b != null);
+		b.printBoard();
+		b.printGroups();
+	}
 
 }

@@ -47,5 +47,10 @@ public class MultiplyGroup extends Group{
 			stack.pop();
 		}
 	}
+
+	@Override
+	protected String Operation() {
+		return "*";
+	}
 	
 }

@@ -48,4 +48,9 @@ public class AddGroup extends Group{
 		}
 	}
 
+	@Override
+	protected String Operation() {
+		return "+";
+	}
+
 }
