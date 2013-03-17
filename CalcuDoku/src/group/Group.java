@@ -79,6 +79,10 @@ public abstract class Group {
 		return new ArrayList<>(s);
 	}
 	
+	public List<Cell> getCells(){
+		return cells;
+	}
+	
 	public List<List<Integer>> getPossibleLists(){
 		return possibleLists;	
 	}

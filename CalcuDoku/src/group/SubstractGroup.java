@@ -34,7 +34,6 @@ public class SubstractGroup extends Group{
 				aux.add(i);
 				aux.add(i-r);
 				possibleLists.add(aux);
-				break;
 			}
 		}
 	}

@@ -3,8 +3,8 @@ package test.group;
 import java.util.ArrayList;
 import java.util.List;
 
-import group.DivideGroup;
 import group.Group;
+import group.SubstractGroup;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,8 +12,8 @@ import org.junit.Test;
 
 import board.Cell;
 
-public class DivideGroupTest {
-	Group g = new DivideGroup(2, 6);
+public class SubstractGroupTest {
+	Group g = new SubstractGroup(5, 8);
 	ArrayList<Cell> cells = new ArrayList<>();
 	@Before
 	public void before(){
@@ -31,21 +31,24 @@ public class DivideGroupTest {
 		l.add(1);
 		l.add(2);
 		l.add(3);
-		l.add(4);
 		l.add(6);
+		l.add(7);
+		l.add(8);
 		List<Integer> aux = new ArrayList<Integer>();
-		aux.add(6);
+		aux.add(8);
 		aux.add(3);
 		m.add(aux);
 		aux = new ArrayList<>();
-		aux.add(4);
+		aux.add(7);
 		aux.add(2);
 		m.add(aux);
 		aux = new ArrayList<>();
-		aux.add(2);
+		aux.add(6);
 		aux.add(1);
 		m.add(aux);
 		Assert.assertEquals(l,g.getPossibles());
 		Assert.assertEquals(m,g.getPossibleLists());
+		System.out.println(g.getPossibles());
+		System.out.println(g.getPossibleLists());
 	}
 }
