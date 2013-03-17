@@ -3,6 +3,7 @@ package board;
 import group.Group;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 	
@@ -112,6 +113,40 @@ public class Board {
 			}
 	}
 	
-
+	private List<Integer> getPossiblesInColumn(int j){
+		List<Integer> possibles = new ArrayList<>();
+		for(int i = 1; i<size+1;i++) possibles.add(i);
+		for(int i = 0;i<size; i++){
+			Integer aux;
+			if((aux = cells[i][j].getNumber())!=0){
+				possibles.remove(aux);
+			}
+		}
+		return possibles;
+	}
+	
+	private List<Integer> getPossiblesInRow(int i){
+		List<Integer> possibles = new ArrayList<>();
+		for(int j = 1; j<size+1;j++) possibles.add(j);
+		for(int j = 0;j<size; j++){
+			Integer aux;
+			if((aux = cells[i][j].getNumber())!=0){
+				possibles.remove(aux);
+			}
+		}
+		return possibles;
+	}
+	
+	public List<Integer> getPossibbles(int i, int j){
+		List<Integer> possibles = new ArrayList<>();
+		List<Integer> rowPossibles = getPossiblesInRow(i);
+		List<Integer> colPossibles = getPossiblesInColumn(j);
+		for(Integer possible: cells[i][j].getGroup().getPossibles()){
+			if(rowPossibles.contains(possible) && colPossibles.contains(possible)){
+				possibles.add(possible);
+			}
+		}
+		return possibles;
+	}
 
 }
