@@ -21,15 +21,19 @@ public class Board {
 			}
 	}
 	
+	public void setCellValue(int i, int j, int value){
+		cells[i][j].setNumber(value);
+	}
+	
 	public boolean completed(){
 		for(int i = 0; i < size; i++){
-			for(int j = 0; i < size; j++){
+			for(int j = 0; j < size; j++){
 				if(cells[i][j].getNumber() == 0){
 					return false;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean isFinished(){

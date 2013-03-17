@@ -86,10 +86,16 @@ public class Parser {
 			return null;
 		}
 		
+		try{
+			input.close();
+			bufReader.close();
+		} catch (Exception e){}
+		
 		if(!board.isCorrect()){
 			System.out.println("ARCHIVO INCORRECTO!");
 			return null;
 		}
+		
 		System.out.println("Parser ok");
 		return board;
 	}
