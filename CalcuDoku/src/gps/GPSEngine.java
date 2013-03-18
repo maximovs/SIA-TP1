@@ -13,7 +13,7 @@ import calcudoku.CalcuDokuState;
 
 public abstract class GPSEngine {
 
-	private List<GPSNode> open = new LinkedList<GPSNode>();
+	protected List<GPSNode> open = new LinkedList<GPSNode>();
 
 	private List<GPSNode> closed = new ArrayList<GPSNode>();
 
@@ -37,13 +37,18 @@ public abstract class GPSEngine {
 			if (open.size() <= 0) {
 				failed = true;
 			} else {
+				System.out.println("open: + " + open.size());
+				System.out.println("closed: + " + closed.size());
 				GPSNode currentNode = open.get(0);
+//				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
+//				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				closed.add(currentNode);
 				open.remove(0);
 				if (isGoal(currentNode)) {
 					finished = true;
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
+					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				} else {
 					explosionCounter++;
 					explode(currentNode);
@@ -53,6 +58,7 @@ public abstract class GPSEngine {
 
 		if (finished) {
 			System.out.println("OK! solution found!");
+			
 		} else if (failed) {
 			System.err.println("FAILED! solution not found!");
 		}
@@ -64,19 +70,23 @@ public abstract class GPSEngine {
 	}
 
 	private  boolean explode(GPSNode node) {
-		if(problem.getRules() == null){
+		if(problem.getRules() == null || problem.getRules().isEmpty()){
 			System.err.println("No rules!");
 			return false;
 		}
 		CalcuDokuState state = (CalcuDokuState) node.getState();
 		state.updateProblem(problem);
-		for (GPSRule rule : problem.getRules()) {
+		System.out.println(state.getStep());
+		state.getBoard().printBoard();
 
+		for (GPSRule rule : problem.getRules()) {
+			
 			GPSState newState = null;
 			try {
 				newState = rule.evalRule(node.getState());
 			} catch (NotAppliableException e) {
 				// Do nothing
+				System.out.println("ERRRORRR");
 			}
 				if (newState != null
 						&& !checkBranch(node, newState)

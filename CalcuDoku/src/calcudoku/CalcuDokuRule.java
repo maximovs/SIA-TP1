@@ -1,6 +1,5 @@
 package calcudoku;
 
-import java.util.ArrayList;
 
 import gps.api.GPSRule;
 import gps.api.GPSState;
@@ -10,16 +9,19 @@ public class CalcuDokuRule implements GPSRule {
 
 	int value;
 	
+	public CalcuDokuRule(int value) {
+		this.value = value;
+	}
+	
 	@Override
 	public Integer getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "value: " + value;
 	}
 
 	@Override

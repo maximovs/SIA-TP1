@@ -8,7 +8,7 @@ public class CalcuDokuState implements GPSState {
 	
 	Board board;
 	int[][] values;
-	int step = -1;
+	int step = 0;
 
 	public CalcuDokuState(Board board) {
 		this.board = board;
@@ -18,8 +18,9 @@ public class CalcuDokuState implements GPSState {
 	public CalcuDokuState(CalcuDokuState state, int value) {
 		this.values = state.values.clone();
 		this.board = state.board;
-		this.step = state.step+1;
+		this.step = state.step;
 		values[step/values.length][step%values.length] = value;
+		step++;
 	}
 
 	@Override
@@ -55,8 +56,4 @@ public class CalcuDokuState implements GPSState {
 		return board;
 	}
 
-	public void setValues(int[][] aux) {
-		values = aux;
-		
-	}
 }
