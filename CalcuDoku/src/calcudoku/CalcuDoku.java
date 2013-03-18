@@ -1,18 +1,19 @@
 package calcudoku;
 
-import gps.BFSGPSEngine;
-import gps.DFSGPSEngine;
 import gps.GPSEngine;
-import parser.Parser;
-import board.Board;
+import gps.MultipleGPSEngine;
+import gps.SearchStrategy;
 
 
 public class CalcuDoku {
 	
 	public static void main(String args[]){
+		// QuadOp6x6
+		// DualOp8x8
+		// 5X5.txt
 		CalcuDokuProblem problem = new CalcuDokuProblem("levels/QuadOp6x6");
-		GPSEngine engine = new DFSGPSEngine();
-		engine.engine(problem, null);
+		GPSEngine engine = new MultipleGPSEngine();
+		engine.engine(problem, SearchStrategy.BFS);
 	}
 
 }

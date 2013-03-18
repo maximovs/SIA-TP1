@@ -1,7 +1,5 @@
 package gps.api;
 
-import java.util.ArrayList;
-
 import gps.exception.NotAppliableException;
 
 /**

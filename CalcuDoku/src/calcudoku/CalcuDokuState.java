@@ -5,9 +5,9 @@ import gps.api.GPSProblem;
 import gps.api.GPSState;
 
 public class CalcuDokuState implements GPSState {
-	
+
 	Board board;
-	int[][] values;
+	private int[][] values;
 	int step = 0;
 
 	public CalcuDokuState(Board board) {
@@ -16,7 +16,7 @@ public class CalcuDokuState implements GPSState {
 	}
 
 	public CalcuDokuState(CalcuDokuState state, int value) {
-		this.values = state.values.clone();
+		setValues(state.values, state.values.length);
 		this.board = state.board;
 		this.step = state.step;
 		values[step/values.length][step%values.length] = value;
@@ -26,26 +26,34 @@ public class CalcuDokuState implements GPSState {
 	@Override
 	public boolean compare(GPSState state) {
 		CalcuDokuState st = (CalcuDokuState)state;
-		
-		
+
+
 		return step == st.getStep() && board.equals(st.board);
-		
+
 	}
 
 	@Override
 	public boolean isFinished() {
 		return board.isFinished();
 	}
-	
+
 	public int[][] getValues(){
 		return values;
 	}
-
 	
+	private void setValues(int[][] v, int size){
+		values = new int[size][size];
+		for(int i=0; i<values.length; i++)
+			for(int j=0; j<values.length; j++)
+				values[i][j] = v[i][j];
+		
+	}
+
+
 	public int getStep(){
 		return step;
 	}
-	
+
 	public void updateProblem(GPSProblem problem){
 		for(int i=0; i<values.length; i++)
 			for(int j=0; j<values.length; j++)
@@ -54,6 +62,17 @@ public class CalcuDokuState implements GPSState {
 	}
 	public Board getBoard(){
 		return board;
+	}
+
+	@Override
+	public String toString() {
+		String s = "Step: " + step + "values:";
+		for(int i=0; i<values.length; i++){
+			s+="\n";
+			for(int j=0; j<values.length; j++)
+				s+=values[i][j] + " ";
+		}
+		return s;
 	}
 
 }

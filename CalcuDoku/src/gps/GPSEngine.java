@@ -20,7 +20,7 @@ public abstract class GPSEngine {
 	private GPSProblem problem;
 
 	// Use this variable in the addNode implementation
-	private SearchStrategy strategy;
+	protected SearchStrategy strategy;
 
 	public void engine(GPSProblem myProblem, SearchStrategy myStrategy) {
 
@@ -34,16 +34,17 @@ public abstract class GPSEngine {
 
 		open.add(rootNode);
 		while (!failed && !finished) {
+//			System.out.println(open);
 			if (open.size() <= 0) {
 				failed = true;
 			} else {
 				System.out.println("open: + " + open.size());
 				System.out.println("closed: + " + closed.size());
-				GPSNode currentNode = open.get(0);
+				GPSNode currentNode = open.remove(0);
 //				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
 //				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				closed.add(currentNode);
-				open.remove(0);
+//				open.remove(0);
 				if (isGoal(currentNode)) {
 					finished = true;
 					System.out.println(currentNode.getSolution());
@@ -70,15 +71,13 @@ public abstract class GPSEngine {
 	}
 
 	private  boolean explode(GPSNode node) {
+		CalcuDokuState state = (CalcuDokuState) node.getState();
+		state.updateProblem(problem);
 		if(problem.getRules() == null || problem.getRules().isEmpty()){
 			System.err.println("No rules!");
 			return false;
 		}
-		CalcuDokuState state = (CalcuDokuState) node.getState();
-		state.updateProblem(problem);
-		System.out.println(state.getStep());
 		state.getBoard().printBoard();
-
 		for (GPSRule rule : problem.getRules()) {
 			
 			GPSState newState = null;
@@ -97,6 +96,13 @@ public abstract class GPSEngine {
 					newNode.setParent(node);
 					addNode(newNode);
 				}
+//			if (newState != null) {
+//				GPSNode newNode = new GPSNode(newState, node.getCost()
+//						+ rule.getCost());
+//				newNode.setParent(node);
+////				System.out.println("estado agregado:" + (CalcuDokuState)newNode.getState());
+//				addNode(newNode);
+//			}
 		}
 		return true;
 	}

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import board.Cell;
-
 public class MultiplyGroup extends Group{
 	
 	public MultiplyGroup(int result, int n, int size) {
