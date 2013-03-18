@@ -103,6 +103,7 @@ public class BoardTest {
 		assertTrue(board.isFinished());
 	}
 	
+	@Test
 	public void returnsCorrectPossibles(){		
 		board = Parser.parse("levels/QuadOp6x6");
 		//chequeo -
