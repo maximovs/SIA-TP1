@@ -41,16 +41,24 @@ public abstract class GPSEngine {
 				System.out.println("open: + " + open.size());
 				System.out.println("closed: + " + closed.size());
 				GPSNode currentNode = open.remove(0);
+				if(((CalcuDokuState)currentNode.getState()).getStep() == 24)
+					System.out.println("BLA");
 //				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
 //				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				closed.add(currentNode);
 //				open.remove(0);
-				if (isGoal(currentNode)) {
-					finished = true;
-					System.out.println(currentNode.getSolution());
-					System.out.println("Expanded nodes: " + explosionCounter);
-					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
-				} else {
+				CalcuDokuState currentState = (CalcuDokuState)currentNode.getState();
+				int size = currentState.getBoard().getSize();
+				if(currentState.getStep() == size*size){
+					currentState.updateProblem(problem);
+					if (isGoal(currentNode)) {
+						finished = true;
+						System.out.println(currentNode.getSolution());
+						System.out.println("Expanded nodes: " + explosionCounter);
+						((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
+					}
+				}
+				else {
 					explosionCounter++;
 					explode(currentNode);
 				}
