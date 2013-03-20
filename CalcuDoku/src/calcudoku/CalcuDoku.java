@@ -11,9 +11,9 @@ public class CalcuDoku {
 		// QuadOp6x6
 		// DualOp8x8
 		// 5X5.txt
-		CalcuDokuProblem problem = new CalcuDokuProblem("levels/QuadOp6x6");
+		CalcuDokuProblem problem = new CalcuDokuProblem("levels/DualOp8x8");
 		GPSEngine engine = new MultipleGPSEngine();
-		engine.engine(problem, SearchStrategy.DFS);
+		engine.engine(problem, SearchStrategy.BFS);
 	}
 
 }

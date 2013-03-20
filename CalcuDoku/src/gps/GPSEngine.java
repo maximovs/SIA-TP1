@@ -74,13 +74,13 @@ public abstract class GPSEngine {
 	}
 
 	private  boolean explode(GPSNode node) {
-		CalcuDokuState state = (CalcuDokuState) node.getState();
-		state.updateProblem(problem);
+//		CalcuDokuState state = (CalcuDokuState) node.getState();
+//		state.updateProblem(problem);
+//		state.getBoard().printBoard();
 		if(problem.getRules() == null || problem.getRules().isEmpty()){
 			System.err.println("No rules!");
 			return false;
 		}
-		state.getBoard().printBoard();
 		for (GPSRule rule : problem.getRules()) {
 			
 			GPSState newState = null;
@@ -90,10 +90,11 @@ public abstract class GPSEngine {
 				// Do nothing
 				System.out.println("ERRRORRR");
 			}
-				if (newState != null
-						&& !checkBranch(node, newState)
-						&& !checkOpenAndClosed(node.getCost() + rule.getCost(),
-								newState)) {
+//				if (newState != null
+//						&& !checkBranch(node, newState)
+//						&& !checkOpenAndClosed(node.getCost() + rule.getCost(),
+//								newState)) {
+			if (newState != null){
 					GPSNode newNode = new GPSNode(newState, node.getCost()
 							+ rule.getCost());
 					newNode.setParent(node);
