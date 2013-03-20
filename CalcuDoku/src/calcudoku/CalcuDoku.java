@@ -13,7 +13,9 @@ public class CalcuDoku {
 		// 5X5.txt
 		CalcuDokuProblem problem = new CalcuDokuProblem("levels/DualOp8x8");
 		GPSEngine engine = new MultipleGPSEngine();
+		long a = System.currentTimeMillis();
 		engine.engine(problem, SearchStrategy.BFS);
+		System.out.println((System.currentTimeMillis()-a)/1000  + "segundos");
 	}
 
 }
