@@ -34,7 +34,7 @@ public class CalcuDokuState implements GPSState {
 
 	@Override
 	public boolean isFinished() {
-		return board.isFinished();
+		return step == board.getSize()*board.getSize() && board.isFinished();
 	}
 
 	public int[][] getValues(){

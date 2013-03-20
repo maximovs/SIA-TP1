@@ -13,7 +13,7 @@ public class CalcuDoku {
 		// 5X5.txt
 		CalcuDokuProblem problem = new CalcuDokuProblem("levels/QuadOp6x6");
 		GPSEngine engine = new MultipleGPSEngine();
-		engine.engine(problem, SearchStrategy.BFS);
+		engine.engine(problem, SearchStrategy.DFS);
 	}
 
 }
