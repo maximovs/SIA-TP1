@@ -9,36 +9,6 @@ import sia.group.Group;
 
 public class Board {
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(cells);
-		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
-		result = prime * result + size;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Board other = (Board) obj;
-		if (!Arrays.deepEquals(cells, other.cells))
-			return false;
-		if (groups == null) {
-			if (other.groups != null)
-				return false;
-		} else if (!groups.equals(other.groups))
-			return false;
-		if (size != other.size)
-			return false;
-		return true;
-	}
 
 	int size;
 	Cell[][] cells;
@@ -89,6 +59,16 @@ public class Board {
 		return true;
 	}
 
+	public int groupsLeft(){
+		int count = 0;
+		for(Group g: groups){
+			if(!g.satisfies()){
+				count++;
+			}
+		}
+		return count;
+	}
+	
 	private boolean rowsFinished() {
 		ArrayList<Integer> numbers = null;
 		for(int i = 0; i < size; i++){
@@ -231,6 +211,37 @@ public class Board {
 			}
 		}
 		return possibles;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(cells);
+		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
+		result = prime * result + size;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		if (!Arrays.deepEquals(cells, other.cells))
+			return false;
+		if (groups == null) {
+			if (other.groups != null)
+				return false;
+		} else if (!groups.equals(other.groups))
+			return false;
+		if (size != other.size)
+			return false;
+		return true;
 	}
 
 }

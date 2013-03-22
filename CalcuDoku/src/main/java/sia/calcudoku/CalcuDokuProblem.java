@@ -27,19 +27,24 @@ public class CalcuDokuProblem implements GPSProblem {
 
 	@Override
 	public List<GPSRule> getRules() {
+		int count = 0;
+		int limit = 3;
 		List<GPSRule> rules = new ArrayList<>();
-		for(int position=0; position<board.getSize()*board.getSize();position++)
-			if(board.getCell(position/board.getSize(), position%board.getSize()).getNumber()==0)
-				for(int i = 1; i < board.getSize()+1 ; i++)
+		for(int position=0; count<limit && position<board.getSize()*board.getSize();position++)
+			if(board.getCell(position/board.getSize(), position%board.getSize()).getNumber()==0){
+				count++;
+				for(int i = 1; i < board.getSize()+1 ; i++){
 					rules.add(new CalcuDokuRule(i,position));
-
+				}
+			}
 		return rules;
 	}
 
 	@Override
 	public Integer getHValue(GPSState state) {
-		// TODO Auto-generated method stub
-		return null;
+		CalcuDokuState st = (CalcuDokuState) state;
+		st.updateProblem(this);
+		return st.getBoard().groupsLeft();
 	}
 
 }

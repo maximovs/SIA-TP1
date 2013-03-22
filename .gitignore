@@ -1,3 +1,4 @@
 .DS_Store
 CalcuDoku/bin/*
 CalcuDoku/target/*
+CalcuDoku/*.jar
