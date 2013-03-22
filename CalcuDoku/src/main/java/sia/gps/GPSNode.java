@@ -8,7 +8,7 @@ public class GPSNode {
 
 	private GPSNode parent;
 
-	private Integer cost;
+	private int cost, hValue;
 
 	public GPSNode(GPSState state, Integer cost) {
 		super();
@@ -53,7 +53,13 @@ public class GPSNode {
 	public boolean equals(Object obj) {
 		return state.compare(((GPSNode)obj).getState());
 	}
+	
+	public void setHValue(int hValue) {
+		this.hValue = hValue;
+	}
 		
-		
+	public int f(){
+		return cost + hValue;
+	}
 	
 }

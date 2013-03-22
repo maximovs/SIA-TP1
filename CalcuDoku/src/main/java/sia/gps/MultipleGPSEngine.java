@@ -11,7 +11,7 @@ public class MultipleGPSEngine extends GPSEngine{
 	
 	@Override
 	public void addNode(GPSNode node) {
-		setOpen.add(node.getState());
+		visited.add(node.getState());
 		switch (strategy) {
 		case DFS:
 			@SuppressWarnings("unchecked")

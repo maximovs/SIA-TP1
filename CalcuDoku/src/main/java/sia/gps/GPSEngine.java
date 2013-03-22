@@ -1,7 +1,6 @@
 package sia.gps;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,19 +17,18 @@ public abstract class GPSEngine {
 
 	protected List<GPSNode> open = new LinkedList<GPSNode>();
 	
-	protected Set<GPSState> setOpen = new HashSet<GPSState>();
+	protected Set<GPSState> visited = new HashSet<GPSState>();
 
 	private List<GPSNode> closed = new LinkedList<GPSNode>();
 
-	private GPSProblem problem;
+	protected GPSProblem problem;
 
 	// Use this variable in the addNode implementation
 	protected SearchStrategy strategy;
 
-	public void engine(GPSProblem myProblem, SearchStrategy myStrategy) {
+	public void engine(GPSProblem myProblem) {
 
 		problem = myProblem;
-		strategy = myStrategy;
 
 		GPSNode rootNode = new GPSNode(problem.getInitState(), 0);
 		boolean finished = false;
@@ -38,7 +36,7 @@ public abstract class GPSEngine {
 		long explosionCounter = 0;
 
 		open.add(rootNode);
-		setOpen.add(rootNode.getState());
+		visited.add(rootNode.getState());
 		while (!failed && !finished) {
 //			System.out.println(open);
 			if (open.size() <= 0) {
@@ -94,6 +92,7 @@ public abstract class GPSEngine {
 		for (GPSRule rule : rules) {
 			GPSState newState = null;
 			try {
+				((CalcuDokuState)node.getState()).updateProblem(problem);
 				newState = rule.evalRule(node.getState());
 			} catch (NotAppliableException e) {
 				// Do nothing
@@ -126,7 +125,7 @@ public abstract class GPSEngine {
 //				return true;
 //			}
 //		}
-		if(setOpen.contains(state)){
+		if(visited.contains(state)){
 			return true;
 		}
 			
