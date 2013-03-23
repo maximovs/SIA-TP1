@@ -19,7 +19,7 @@ public class DFSEngine extends GPSEngine{
 	@Override
 	public void addNode(GPSNode node) {
 		if( limit != null && ((CalcuDokuState)node.getState()).getDepth() > limit ){
-			//Se alcanzo la altura maxima
+			//Tenia limite de altura y Se alcanzo la altura maxima.
 			return;
 		}
 		visited.add(node.getState());

@@ -85,7 +85,8 @@ public class CalcuDokuState implements GPSState {
 		int a = 1;
 		for(int i=0;i<values.length;i++){
 			for(int j=0;j<values.length;j++){
-				a*=values[i][j]*7;
+				if(values[i][j] != 0)
+					a*=values[i][j]*7;
 			}
 		}
 		return a;
