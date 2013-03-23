@@ -4,6 +4,7 @@ import sia.gps.AStarEngine;
 import sia.gps.BFSEngine;
 import sia.gps.DFSEngine;
 import sia.gps.GPSEngine;
+import sia.gps.GreedEngine;
 import sia.gps.MultipleGPSEngine;
 
 
@@ -36,6 +37,9 @@ public class CalcuDoku {
 		case "Iter":
 			iterative(problem);
 			return;
+		case "Greed":
+			engine = new GreedEngine();
+			break;
 		default:
 			break;
 		}

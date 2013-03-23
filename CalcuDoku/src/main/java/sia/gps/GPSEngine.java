@@ -1,6 +1,7 @@
 package sia.gps;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +20,7 @@ public abstract class GPSEngine {
 	
 	protected Set<GPSState> visited = new HashSet<GPSState>();
 
-//	private List<GPSNode> closed = new LinkedList<GPSNode>();
+	private List<GPSNode> closed = new LinkedList<GPSNode>();
 
 	protected GPSProblem problem;
 
@@ -89,6 +90,7 @@ public abstract class GPSEngine {
 			System.err.println("No rules!");
 			return false;
 		}
+		List<GPSNode> newNodes = new ArrayList<>();
 		for (GPSRule rule : rules) {
 			GPSState newState = null;
 			try {
@@ -104,7 +106,7 @@ public abstract class GPSEngine {
 					GPSNode newNode = new GPSNode(newState, node.getCost()
 							+ rule.getCost());
 					newNode.setParent(node);
-					addNode(newNode);
+					newNodes.add(newNode);
 				}
 			
 			else{
@@ -112,28 +114,37 @@ public abstract class GPSEngine {
 			}
 			
 		}
+		sortChildren(newNodes);
+		for(GPSNode n: newNodes){
+			addNode(n);
+		}
 		return true;
+	}
+
+	protected void sortChildren(List<GPSNode> newNodes) {
+		//Por default los dejo en el orden que vienen.
+		
 	}
 
 	private  boolean checkOpenAndClosed(Integer cost, GPSState state) {
 //		long a = System.currentTimeMillis();
 //		String b = "tiempo: ";
 
-//		for (GPSNode closedNode : closed) {
-//			if (closedNode.getState().compare(state)) {
-//				System.out.println("ASDASDSA");
-//				return true;
-//			}
-//		}
+		for (GPSNode closedNode : closed) {
+			if (closedNode.getState().compare(state)) {
+				System.out.println("ASDASDSA");
+				return true;
+			}
+		}
 		if(visited.contains(state)){
 			return true;
 		}
 			
-//		for (GPSNode openNode : open) {
-//			if (openNode.getState().compare(state) && openNode.getCost() <= cost) {
-//				return true;
-//			}
-//		}
+		for (GPSNode openNode : open) {
+			if (openNode.getState().compare(state) && openNode.getCost() <= cost) {
+				return true;
+			}
+		}
 //		b+= (a-System.currentTimeMillis()) + " ";
 //		a=System.currentTimeMillis();
 //		b+= (System.currentTimeMillis()-a) + " ";
@@ -142,12 +153,12 @@ public abstract class GPSEngine {
 	}
 
 	private  boolean checkBranch(GPSNode parent, GPSState state) {
-		return false;
-//		if (parent == null) {
-//			return false;
-//		}
-//		return checkBranch(parent.getParent(), state)
-//				|| state.compare(parent.getState());
+//		return false;
+		if (parent == null) {
+			return false;
+		}
+		return checkBranch(parent.getParent(), state)
+				|| state.compare(parent.getState());
 	}
 
 	public abstract  void addNode(GPSNode node);
