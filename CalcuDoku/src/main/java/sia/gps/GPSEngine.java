@@ -19,7 +19,7 @@ public abstract class GPSEngine {
 	
 	protected Set<GPSState> visited = new HashSet<GPSState>();
 
-	private List<GPSNode> closed = new LinkedList<GPSNode>();
+//	private List<GPSNode> closed = new LinkedList<GPSNode>();
 
 	protected GPSProblem problem;
 
@@ -42,8 +42,8 @@ public abstract class GPSEngine {
 			if (open.size() <= 0) {
 				failed = true;
 			} else {
-				System.out.println("open: + " + open.size());
-				System.out.println("closed: + " + closed.size());
+//				System.out.println("open: + " + open.size());
+//				System.out.println("closed: + " + closed.size());
 				GPSNode currentNode = open.remove(0);
 //				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
 //				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
@@ -116,8 +116,8 @@ public abstract class GPSEngine {
 	}
 
 	private  boolean checkOpenAndClosed(Integer cost, GPSState state) {
-		long a = System.currentTimeMillis();
-		String b = "tiempo: ";
+//		long a = System.currentTimeMillis();
+//		String b = "tiempo: ";
 
 //		for (GPSNode closedNode : closed) {
 //			if (closedNode.getState().compare(state)) {

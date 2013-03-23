@@ -68,6 +68,22 @@ public class BoardTest {
 	}
 	
 	@Test
+	public void colsAndRowsLeft3(){		
+		board.setCellValue(0, 0, 2);
+		board.setCellValue(0, 1, 1);
+		assertEquals(board.rowsAndColsLeft(), 3);
+	}
+	
+	@Test
+	public void colsAndRowsLeft0(){		
+		board.setCellValue(0, 0, 2);
+		board.setCellValue(0, 1, 1);
+		board.setCellValue(1, 0, 1);
+		board.setCellValue(1, 1, 2);
+		assertEquals(board.rowsAndColsLeft(), 0);
+	}
+	
+	@Test
 	public void isFinished5X5(){		
 		board = Parser.parse("levels/5x5");
 		board.setCellValue(0, 0, 4);

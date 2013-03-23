@@ -69,6 +69,35 @@ public class Board {
 		return count;
 	}
 	
+	public int rowsAndColsLeft(){
+		int count = 0;
+		ArrayList<Integer> numbers = null;
+		boolean completed;
+		for(int i = 0; i < size; i++){
+			completed = true;
+			for(int j = 0; j < size; j++){
+				if(cells[i][j].getNumber() == 0){
+					completed = false;
+				}
+			}
+			if(completed == true){
+				count++;
+			}
+		}
+		for(int j = 0; j < size; j++){
+			completed = true;
+			for(int i = 0; i < size; i++){
+				if(cells[i][j].getNumber() == 0){
+					completed = false;
+				}
+			}
+			if(completed == true){
+				count++;
+			}
+		}
+		return size + size - count;
+	}
+	
 	private boolean rowsFinished() {
 		ArrayList<Integer> numbers = null;
 		for(int i = 0; i < size; i++){
