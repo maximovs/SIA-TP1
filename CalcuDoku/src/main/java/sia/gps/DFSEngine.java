@@ -6,7 +6,8 @@ import sia.calcudoku.CalcuDokuState;
 
 public class DFSEngine extends GPSEngine{
 
-	private int limit = 0;
+
+	private Integer limit = null;
 	
 	public DFSEngine() {
 		super();
@@ -18,7 +19,8 @@ public class DFSEngine extends GPSEngine{
 
 	@Override
 	public void addNode(GPSNode node) {
-		if( ((CalcuDokuState)node.getState()).getDepth() > limit ){
+
+		if( limit != null && ((CalcuDokuState)node.getState()).getDepth() > limit ){
 			//Se alcanzo la altura maxima
 			return;
 		}
