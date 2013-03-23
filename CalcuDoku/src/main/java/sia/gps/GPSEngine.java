@@ -42,8 +42,8 @@ public abstract class GPSEngine {
 			if (open.size() <= 0) {
 				failed = true;
 			} else {
-				System.out.println("open: + " + open.size());
-				System.out.println("closed: + " + closed.size());
+//				System.out.println("open: + " + open.size());
+//				System.out.println("closed: + " + closed.size());
 				GPSNode currentNode = open.remove(0);
 //				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
 //				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
