@@ -2,6 +2,7 @@ package sia.gps;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +17,7 @@ import sia.gps.exception.NotAppliableException;
 
 public abstract class GPSEngine {
 
-	protected List<GPSNode> open = new LinkedList<GPSNode>();
+	protected Collection<GPSNode> open = new LinkedList<GPSNode>();
 	
 	protected Set<GPSState> visited = new HashSet<GPSState>();
 
@@ -45,7 +46,7 @@ public abstract class GPSEngine {
 			} else {
 //				System.out.println("open: + " + open.size());
 //				System.out.println("closed: + " + closed.size());
-				GPSNode currentNode = open.remove(0);
+				GPSNode currentNode = removeFirst();
 //				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
 //				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 //				closed.add(currentNode);
@@ -122,7 +123,6 @@ public abstract class GPSEngine {
 	}
 
 	protected void sortChildren(List<GPSNode> newNodes) {
-		//Por default los dejo en el orden que vienen.
 		
 	}
 
@@ -162,5 +162,9 @@ public abstract class GPSEngine {
 	}
 
 	public abstract  void addNode(GPSNode node);
+
+	protected GPSNode removeFirst() {
+		return ((List<GPSNode>)open).remove(0);
+	}
 
 }

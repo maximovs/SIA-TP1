@@ -9,6 +9,7 @@ public class GreedEngine extends DFSEngine {
 	
 	@Override
 	protected void sortChildren(List<GPSNode> newNodes) {
+		
 		Comparator<GPSNode> comparator = new NodeComparator(this.problem);
 		SortedSet<GPSNode> ordered = new TreeSet<>(comparator);
 		ordered.addAll(newNodes);

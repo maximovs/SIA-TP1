@@ -2,6 +2,7 @@ package sia.gps;
 
 import java.util.Comparator;
 
+import sia.calcudoku.CalcuDokuState;
 import sia.gps.api.GPSProblem;
 
 public class NodeComparator implements Comparator<GPSNode> {
@@ -18,7 +19,11 @@ public class NodeComparator implements Comparator<GPSNode> {
 		if(hValueDif != 0){
 			return hValueDif;
 		}
-		return 1;
+		Integer a = ((CalcuDokuState)node1.getState()).getLast();
+		Integer b = ((CalcuDokuState)node2.getState()).getLast();
+		int res = a.compareTo(b);
+		return res==0?1:res;
+//		return 1;
 	}
 
 }
