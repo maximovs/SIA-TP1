@@ -61,5 +61,10 @@ public class GPSNode {
 	public int f(){
 		return cost + hValue;
 	}
+
+	public int h() {
+		// TODO Auto-generated method stub
+		return hValue;
+	}
 	
 }

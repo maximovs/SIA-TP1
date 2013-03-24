@@ -9,6 +9,7 @@ public class CalcuDokuState implements GPSState {
 	Board board;
 	private int[][] values;
 	int depth = 0;
+	int last = 0;
 //	int position = 0;
 
 	public CalcuDokuState(Board board) {
@@ -17,6 +18,7 @@ public class CalcuDokuState implements GPSState {
 	}
 
 	public CalcuDokuState(CalcuDokuState state, int value, int position) {
+		last = value;
 		setValues(state.values, state.values.length);
 		this.board = state.board;
 		this.depth = state.depth+1;
@@ -96,6 +98,8 @@ public class CalcuDokuState implements GPSState {
 	public boolean equals(Object obj) {
 		return compare((CalcuDokuState)obj);
 	}
-	
+	public int getLast() {
+		return last;
+	}
 	
 }

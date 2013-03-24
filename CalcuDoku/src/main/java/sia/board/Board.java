@@ -71,7 +71,6 @@ public class Board {
 	
 	public int rowsAndColsLeft(){
 		int count = 0;
-		ArrayList<Integer> numbers = null;
 		boolean completed;
 		for(int i = 0; i < size; i++){
 			completed = true;
@@ -236,7 +235,17 @@ public class Board {
 		List<Integer> colPossibles = getPossiblesInColumn(j);
 		for(Integer possible: cells[i][j].getGroup().getPossibles()){
 			if(rowPossibles.contains(possible) && colPossibles.contains(possible)){
+				if(cells[i][j].getGroup().size()==cells[i][j].getGroup().getCellNumbers().size()+1){
+					int aux  = cells[i][j].getNumber();
+					cells[i][j].setNumber(possible);
+					if(cells[i][j].getGroup().satisfies()){
+						possibles.add(possible);
+					}
+					cells[i][j].setNumber(aux);
+					
+				}else{
 				possibles.add(possible);
+				}
 			}
 		}
 		return possibles;

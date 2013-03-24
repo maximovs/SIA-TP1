@@ -12,16 +12,18 @@ public class CalcuDoku {
 	
 	public static void main(String args[]){
 		if (args == null || args.length < 2) {
-			System.out.println("Ingrese [BFS|DFS|Iter|Astar] [QuadOp3x3|QuadOp4x4|5x5|QuadOp6x6|DualOp8x8");
+			System.out.println("Ingrese [BFS|DFS|Iter|Astar] [QuadOp3x3|QuadOp4x4|QuadOp4x4tricky|5x5|QuadOp6x6|DualOp8x8] [width] [groups|rowsNCols|both]");
 			return;
 		}
-	
+		for(String s:args){
+			System.out.println(s);
+		}
 		// QuadOp3x3
 		// QuadOp4x4
 		// 5x5
 		// QuadOp6x6
 		// DualOp8x8
-		CalcuDokuProblem problem = new CalcuDokuProblem("src/main/resources/levels/"+args[1]);
+		CalcuDokuProblem problem = new CalcuDokuProblem("src/main/resources/levels/"+args[1], Integer.parseInt(args[2]),Heuristic.valueOf(args[3]));
 		GPSEngine engine = new MultipleGPSEngine();
 		long a = System.currentTimeMillis();
 		switch (args[0]) {

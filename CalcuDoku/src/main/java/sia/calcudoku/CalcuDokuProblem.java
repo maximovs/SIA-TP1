@@ -14,10 +14,14 @@ import sia.parser.Parser;
 public class CalcuDokuProblem implements GPSProblem {
 
 	Board board;
+	int limit = 1;
+	Heuristic h;
 
-	public CalcuDokuProblem(String levelFile){
+	public CalcuDokuProblem(String levelFile,int limit, Heuristic h){
 		super();
 		board = Parser.parse(levelFile);
+		this.limit=limit==0?board.getSize()*board.getSize():limit;
+		this.h = h;
 	}
 
 	@Override
@@ -28,7 +32,7 @@ public class CalcuDokuProblem implements GPSProblem {
 	@Override
 	public List<GPSRule> getRules() {
 		int count = 0;
-		int limit = 3;
+//		int limit = 6;
 		List<GPSRule> rules = new ArrayList<>();
 		for(int position=0; count<limit && position<board.getSize()*board.getSize();position++)
 			if(board.getCell(position/board.getSize(), position%board.getSize()).getNumber()==0){
@@ -44,7 +48,15 @@ public class CalcuDokuProblem implements GPSProblem {
 	public Integer getHValue(GPSState state) {
 		CalcuDokuState st = (CalcuDokuState) state;
 		st.updateProblem(this);
-		return st.getBoard().groupsLeft();
+		switch(h){
+		case groups:
+			return st.getBoard().groupsLeft();
+		case rowsNCols:
+			return st.getBoard().rowsAndColsLeft();
+		case both:
+		default:
+			return st.getBoard().rowsAndColsLeft() +st.getBoard().groupsLeft();
+		}
 	}
 
 }
