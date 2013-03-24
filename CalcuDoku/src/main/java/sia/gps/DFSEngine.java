@@ -25,7 +25,6 @@ public class DFSEngine extends GPSEngine{
 			return;
 		}
 		visited.add(node.getState());
-			@SuppressWarnings("unchecked")
 			Deque<GPSNode> dequeue = (Deque<GPSNode>) open;
 			dequeue.push(node);
 		

@@ -5,7 +5,6 @@ import sia.gps.BFSEngine;
 import sia.gps.DFSEngine;
 import sia.gps.GPSEngine;
 import sia.gps.GreedEngine;
-import sia.gps.MultipleGPSEngine;
 
 
 public class CalcuDoku {
@@ -24,7 +23,7 @@ public class CalcuDoku {
 		// QuadOp6x6
 		// DualOp8x8
 		CalcuDokuProblem problem = new CalcuDokuProblem("src/main/resources/levels/"+args[1], Integer.parseInt(args[2]),Heuristic.valueOf(args[3]));
-		GPSEngine engine = new MultipleGPSEngine();
+		GPSEngine engine = new GreedEngine();
 		long a = System.currentTimeMillis();
 		switch (args[0]) {
 		case "BFS":
