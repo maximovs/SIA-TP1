@@ -21,8 +21,6 @@ public abstract class GPSEngine {
 	
 	protected Set<GPSState> visited = new HashSet<GPSState>();
 
-	private List<GPSNode> closed = new LinkedList<GPSNode>();
-
 	protected GPSProblem problem;
 
 	// Use this variable in the addNode implementation
@@ -44,13 +42,7 @@ public abstract class GPSEngine {
 			if (open.size() <= 0) {
 				failed = true;
 			} else {
-//				System.out.println("open: + " + open.size());
-//				System.out.println("closed: + " + closed.size());
 				GPSNode currentNode = removeFirst();
-//				System.out.println((((CalcuDokuState)currentNode.getState()).getStep()));
-//				((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
-//				closed.add(currentNode);
-//				open.remove(0);
 				CalcuDokuState currentState = (CalcuDokuState)currentNode.getState();
 				currentState.updateProblem(problem);
 				if (isGoal(currentNode)) {
@@ -58,9 +50,6 @@ public abstract class GPSEngine {
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
 					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
-					
-					
-					
 				}
 				else {
 					explosionCounter++;
@@ -82,10 +71,7 @@ public abstract class GPSEngine {
 				&& currentNode.getState().isFinished();
 	}
 
-	private  boolean explode(GPSNode node) {
-//		CalcuDokuState state = (CalcuDokuState) node.getState();
-//		state.updateProblem(problem);
-//		state.getBoard().printBoard();
+	protected  boolean explode(GPSNode node) {
 		List<GPSRule> rules = problem.getRules(); 
 		if(rules == null || rules.isEmpty()){
 			System.err.println("No rules!");
@@ -100,20 +86,14 @@ public abstract class GPSEngine {
 			} catch (NotAppliableException e) {
 				// Do nothing
 			}
-//				if (newState != null) {
 			if (newState != null && !checkBranch(node, newState)
-					&& !checkOpenAndClosed(node.getCost() + rule.getCost(),
+					&& !checkVisited(node.getCost() + rule.getCost(),
 					newState)){
 					GPSNode newNode = new GPSNode(newState, node.getCost()
 							+ rule.getCost());
 					newNode.setParent(node);
 					newNodes.add(newNode);
 				}
-			
-			else{
-//				System.out.println("REPETIDO");
-			}
-			
 		}
 		sortChildren(newNodes);
 		for(GPSNode n: newNodes){
@@ -122,38 +102,14 @@ public abstract class GPSEngine {
 		return true;
 	}
 
-	protected void sortChildren(List<GPSNode> newNodes) {
-		
-	}
+	//It's used as a hook so it can be used by subclasses.
+	protected void sortChildren(List<GPSNode> newNodes) {}
 
-	private  boolean checkOpenAndClosed(Integer cost, GPSState state) {
-//		long a = System.currentTimeMillis();
-//		String b = "tiempo: ";
-
-		for (GPSNode closedNode : closed) {
-			if (closedNode.getState().compare(state)) {
-				System.out.println("ASDASDSA");
-				return true;
-			}
-		}
-		if(visited.contains(state)){
-			return true;
-		}
-			
-		for (GPSNode openNode : open) {
-			if (openNode.getState().compare(state) && openNode.getCost() <= cost) {
-				return true;
-			}
-		}
-//		b+= (a-System.currentTimeMillis()) + " ";
-//		a=System.currentTimeMillis();
-//		b+= (System.currentTimeMillis()-a) + " ";
-//		System.out.println(b);
-		return false;
+	private  boolean checkVisited(Integer cost, GPSState state) {
+		return visited.contains(state);
 	}
 
 	private  boolean checkBranch(GPSNode parent, GPSState state) {
-//		return false;
 		if (parent == null) {
 			return false;
 		}

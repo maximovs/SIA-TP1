@@ -10,7 +10,6 @@ public class CalcuDokuState implements GPSState {
 	private int[][] values;
 	int depth = 0;
 	int last = 0;
-//	int position = 0;
 
 	public CalcuDokuState(Board board) {
 		this.board = board;

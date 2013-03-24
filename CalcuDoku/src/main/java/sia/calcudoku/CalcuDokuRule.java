@@ -17,7 +17,6 @@ public class CalcuDokuRule implements GPSRule {
 	
 	@Override
 	public Integer getCost() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 
@@ -32,7 +31,6 @@ public class CalcuDokuRule implements GPSRule {
 		if(!(board.getPossibbles(position/board.getSize(), position%board.getSize()).contains(value)))
 			throw new NotAppliableException();
 		return new CalcuDokuState((CalcuDokuState)state, value,position);
-		
 	}
 	
 	@Override

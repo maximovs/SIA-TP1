@@ -10,7 +10,6 @@ public class BFSEngine extends GPSEngine{
 		visited.add(node.getState());
 		Queue<GPSNode> queue = (Queue<GPSNode>) open;
 		queue.offer(node);
-		
 	}
 
 }

@@ -14,7 +14,7 @@ import sia.parser.Parser;
 public class CalcuDokuProblem implements GPSProblem {
 
 	Board board;
-	int limit = 1;
+	int limit;
 	Heuristic h;
 
 	public CalcuDokuProblem(String levelFile,int limit, Heuristic h){
@@ -32,7 +32,6 @@ public class CalcuDokuProblem implements GPSProblem {
 	@Override
 	public List<GPSRule> getRules() {
 		int count = 0;
-//		int limit = 6;
 		List<GPSRule> rules = new ArrayList<>();
 		for(int position=0; count<limit && position<board.getSize()*board.getSize();position++)
 			if(board.getCell(position/board.getSize(), position%board.getSize()).getNumber()==0){

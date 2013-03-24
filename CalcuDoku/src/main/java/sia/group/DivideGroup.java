@@ -15,7 +15,7 @@ public class DivideGroup extends Group{
 	@Override
 	public boolean satisfies() {
 		List<Integer> l = getCellNumbers();
-		/* Deben ser dos n??meros*/
+		/* Deben ser dos números*/
 		if(l.size()!=2) return false;
 		Collections.sort(l);
 		/* Deben dar un entero*/
@@ -43,8 +43,4 @@ public class DivideGroup extends Group{
 	protected String Operation() {
 		return "/";
 	}
-
-
-
-
 }

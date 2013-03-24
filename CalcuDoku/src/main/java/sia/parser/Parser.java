@@ -37,11 +37,19 @@ public class Parser {
 			line = bufReader.readLine();
 		} catch (IOException e) {
 			System.out.println("ARCHIVO INCORRECTO!");
+			try {
+				bufReader.close();
+			} catch (IOException e1) {
+			}
 			return null;
 		}
 		blockSize = Integer.valueOf(line);
 		if(blockSize == null){
 			System.out.println("ARCHIVO INCORRECTO!");
+			try {
+				bufReader.close();
+			} catch (IOException e1) {
+			}
 			return null;
 		}
 		
@@ -91,6 +99,12 @@ public class Parser {
 		} catch (Exception e) {
 			System.out.println("ARCHIVO INCORRECTO!");
 			return null;
+		} finally{
+			try {
+				bufReader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		try{

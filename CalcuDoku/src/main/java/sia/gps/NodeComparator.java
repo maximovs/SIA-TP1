@@ -23,7 +23,6 @@ public class NodeComparator implements Comparator<GPSNode> {
 		Integer b = ((CalcuDokuState)node2.getState()).getLast();
 		int res = a.compareTo(b);
 		return res==0?1:res;
-//		return 1;
 	}
 
 }

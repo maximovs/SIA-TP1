@@ -63,7 +63,6 @@ public class GPSNode {
 	}
 
 	public int h() {
-		// TODO Auto-generated method stub
 		return hValue;
 	}
 	
