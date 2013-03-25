@@ -20,8 +20,6 @@ public abstract class GPSEngine {
 	protected Set<GPSState> visited = new HashSet<GPSState>();
 
 	protected GPSProblem problem;
-	
-	private long totalStates=0;
 
 	public void engine(GPSProblem myProblem) {
 
@@ -45,7 +43,7 @@ public abstract class GPSEngine {
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
 					System.out.println("Frontier nodes: " + open.size());
-					System.out.println("Total states: " + totalStates);
+					System.out.println("Total states: " + explosionCounter+open.size());
 					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				}
 				else {
@@ -90,7 +88,6 @@ public abstract class GPSEngine {
 					newNode.setParent(node);
 					newNodes.add(newNode);
 					visited.add(newNode.getState());
-					totalStates++;
 				}
 		}
 		sortChildren(newNodes);
