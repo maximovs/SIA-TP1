@@ -33,7 +33,6 @@ public abstract class GPSEngine {
 		long explosionCounter = 0;
 
 		open.add(rootNode);
-		visited.add(rootNode.getState());
 		while (!failed && !finished) {
 			if (open.size() <= 0) {
 				failed = true;
