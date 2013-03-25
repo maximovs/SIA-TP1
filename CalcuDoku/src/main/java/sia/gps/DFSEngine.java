@@ -8,9 +8,8 @@ public class DFSEngine extends GPSEngine{
 
 	@Override
 	public void addNode(GPSNode node) {
-		visited.add(node.getState());
-			Deque<GPSNode> dequeue = (Deque<GPSNode>) open;
-			dequeue.push(node);
+		Deque<GPSNode> dequeue = (Deque<GPSNode>) open;
+		dequeue.push(node);
 		
 	}
 

@@ -46,6 +46,7 @@ public abstract class GPSEngine {
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
 					System.out.println("Frontier nodes: " + open.size());
+					System.out.println("Generated states: " + visited.size());
 					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				}
 				else {
@@ -89,6 +90,7 @@ public abstract class GPSEngine {
 							+ rule.getCost());
 					newNode.setParent(node);
 					newNodes.add(newNode);
+					visited.add(newNode.getState());
 				}
 		}
 		sortChildren(newNodes);

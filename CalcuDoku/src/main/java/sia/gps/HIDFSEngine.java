@@ -27,11 +27,9 @@ public class HIDFSEngine extends DFSEngine{
 	@Override
 	public void addNode(GPSNode node) {
 		if(mode == BFS){
-			visited.add(node.getState());
 			Queue<GPSNode> queue = (Queue<GPSNode>) open;
 			queue.offer(node);
 		}else{
-			visited.add(node.getState());
 			Deque<GPSNode> dequeue = (Deque<GPSNode>) open;
 			dequeue.push(node);
 		}
