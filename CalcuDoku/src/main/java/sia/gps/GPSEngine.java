@@ -1,13 +1,11 @@
 package sia.gps;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 import sia.calcudoku.CalcuDokuState;
 import sia.gps.api.GPSProblem;
 import sia.gps.api.GPSRule;
@@ -22,6 +20,8 @@ public abstract class GPSEngine {
 	protected Set<GPSState> visited = new HashSet<GPSState>();
 
 	protected GPSProblem problem;
+	
+	private long totalStates=0;
 
 	public void engine(GPSProblem myProblem) {
 
@@ -45,7 +45,7 @@ public abstract class GPSEngine {
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
 					System.out.println("Frontier nodes: " + open.size());
-					System.out.println("Generated states: " + visited.size());
+					System.out.println("Total states: " + totalStates);
 					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				}
 				else {
@@ -90,6 +90,7 @@ public abstract class GPSEngine {
 					newNode.setParent(node);
 					newNodes.add(newNode);
 					visited.add(newNode.getState());
+					totalStates++;
 				}
 		}
 		sortChildren(newNodes);
