@@ -43,7 +43,7 @@ public abstract class GPSEngine {
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
 					System.out.println("Frontier nodes: " + open.size());
-					System.out.println("Total states: " + explosionCounter+open.size());
+					System.out.println("Total states: " + (explosionCounter+open.size()));
 					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				}
 				else {
