@@ -50,12 +50,12 @@ public class CalcuDokuProblem implements GPSProblem {
 		Board board = st.getBoard();
 		switch(h){
 		case GROUPS:
-			return (board.getSize()*board.getSize()*board.groupsLeft())/board.totalGroups();
+			return (st.cellsLeft()*board.groupsLeft())/board.totalGroups();
 		case ROWSNCOLS:
 			return (board.rowsAndColsLeft()*board.rowsAndColsLeft())/4;
 		case BOTH:
 		default:
-			return Math.max((board.getSize()*board.getSize()*board.groupsLeft())/board.totalGroups(),(board.rowsAndColsLeft()*board.rowsAndColsLeft())/4);
+			return Math.max((st.cellsLeft()*board.groupsLeft())/board.totalGroups(),(board.rowsAndColsLeft()*board.rowsAndColsLeft())/4);
 		}
 	}
 
