@@ -1,19 +1,28 @@
 package sia.gps;
 
 import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 public class AStarEngine extends GPSEngine{
-
-	private final int INITIAL_SIZE = 1000;
 	
 	public AStarEngine() {
-		open = new PriorityQueue<GPSNode>(INITIAL_SIZE, new Comparator<GPSNode>() {
+		
+		open = new TreeSet<>(new Comparator<GPSNode>() {
 			@Override
 			public int compare(GPSNode node1, GPSNode node2) {
-				return (node1.f() != node2.f()) ? node1.f()-node2.f() : node1.h() - node2.h();
+				if(node1.f() != node2.f())
+					return node1.f() - node2.f();
+				else if(node1.h() != node2.h())
+					return node1.h() - node2.h();
+				return 1;
 			}
 		});
+//		open = new PriorityQueue<GPSNode>(INITIAL_SIZE, new Comparator<GPSNode>() {
+//			@Override
+//			public int compare(GPSNode node1, GPSNode node2) {
+//				return ((node1.f() != node2.f()) ? node1.f()-node2.f() : node1.h() - node2.h());
+//			}
+//		});
 	}
 	
 	@Override
@@ -24,6 +33,6 @@ public class AStarEngine extends GPSEngine{
 	
 	@Override
 	protected GPSNode removeFirst() {
-		return ((PriorityQueue<GPSNode>) open).remove();
+		return ((TreeSet<GPSNode>)open).pollFirst();
 	}
 }
