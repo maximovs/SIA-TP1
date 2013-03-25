@@ -4,11 +4,6 @@ import java.util.Deque;
 
 
 public class DFSEngine extends GPSEngine{
-
-
-	public DFSEngine() {
-		super();
-	}
 	
 
 	@Override

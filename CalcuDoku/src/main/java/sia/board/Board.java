@@ -10,9 +10,9 @@ import sia.group.Group;
 public class Board {
 	
 
-	int size;
-	Cell[][] cells;
-	ArrayList<Group> groups;
+	private int size;
+	private Cell[][] cells;
+	private ArrayList<Group> groups;
 	
 	public Board(int size){
 		this.size = size;
@@ -140,19 +140,15 @@ public class Board {
 	}
 	
 	public boolean isCorrect(){
-		for(int i = 0; i < size; i++){
-			for(int j = 0; j < size; j++){
-				if(cells[i][j].getGroup() == null){
+		for(int i = 0; i < size; i++)
+			for(int j = 0; j < size; j++)
+				if(cells[i][j].getGroup() == null)
 					return false;
-				}
-			}
-		}
 		for(Group g: groups){
 			if(g.getPossibleLists().isEmpty()){
 				return false;
 			}
 		}
-		
 		return true;
 	}
 
@@ -203,6 +199,10 @@ public class Board {
 		for(Group g: this.groups){
 			System.out.println(g);
 		}
+	}
+	
+	public int totalGroups(){
+		return groups.size();
 	}
 	
 	private List<Integer> getPossiblesInColumn(int j){

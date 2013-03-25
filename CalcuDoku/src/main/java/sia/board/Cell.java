@@ -5,12 +5,15 @@ import sia.group.Group;
 public class Cell {
 	private int number = 0;
 	private Group group;
+	
 	public Cell() {
 		
 	}
+	
 	public void setGroup(Group g){
 		group = g;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -19,6 +22,7 @@ public class Cell {
 		result = prime * result + number;
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -37,6 +41,7 @@ public class Cell {
 			return false;
 		return true;
 	}
+	
 	public Group getGroup(){
 		return group;
 	}
@@ -44,6 +49,7 @@ public class Cell {
 	public void setNumber(int number){
 		this.number = number;
 	}
+	
 	public int getNumber(){
 		return number;
 	}

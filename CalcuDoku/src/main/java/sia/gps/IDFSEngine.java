@@ -19,9 +19,8 @@ public class IDFSEngine extends DFSEngine{
 			open.add(new GPSNode(problem.getInitState(), 0));
 			limit++;
 			return true;
-		}else{
-			return super.explode(node);
 		}
+		return super.explode(node);
 	}
 
 }

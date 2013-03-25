@@ -23,9 +23,6 @@ public abstract class GPSEngine {
 
 	protected GPSProblem problem;
 
-	// Use this variable in the addNode implementation
-	protected SearchStrategy strategy;
-
 	public void engine(GPSProblem myProblem) {
 
 		problem = myProblem;
@@ -38,7 +35,6 @@ public abstract class GPSEngine {
 		open.add(rootNode);
 		visited.add(rootNode.getState());
 		while (!failed && !finished) {
-//			System.out.println(open);
 			if (open.size() <= 0) {
 				failed = true;
 			} else {
@@ -49,6 +45,7 @@ public abstract class GPSEngine {
 					finished = true;
 					System.out.println(currentNode.getSolution());
 					System.out.println("Expanded nodes: " + explosionCounter);
+					System.out.println("Frontier nodes: " + open.size());
 					((CalcuDokuState)currentNode.getState()).getBoard().printBoard();
 				}
 				else {
@@ -67,6 +64,7 @@ public abstract class GPSEngine {
 	}
 
 	private  boolean isGoal(GPSNode currentNode) {
+		((CalcuDokuState)currentNode.getState()).updateProblem(problem);
 		return currentNode.getState() != null
 				&& currentNode.getState().isFinished();
 	}
@@ -86,9 +84,7 @@ public abstract class GPSEngine {
 			} catch (NotAppliableException e) {
 				// Do nothing
 			}
-			if (newState != null && !checkBranch(node, newState)
-					&& !checkVisited(node.getCost() + rule.getCost(),
-					newState)){
+			if (newState != null && !checkVisited(newState)){
 					GPSNode newNode = new GPSNode(newState, node.getCost()
 							+ rule.getCost());
 					newNode.setParent(node);
@@ -105,18 +101,10 @@ public abstract class GPSEngine {
 	//It's used as a hook so it can be used by subclasses.
 	protected void sortChildren(List<GPSNode> newNodes) {}
 
-	private  boolean checkVisited(Integer cost, GPSState state) {
+	private  boolean checkVisited(GPSState state) {
 		return visited.contains(state);
 	}
-
-	private  boolean checkBranch(GPSNode parent, GPSState state) {
-		if (parent == null) {
-			return false;
-		}
-		return checkBranch(parent.getParent(), state)
-				|| state.compare(parent.getState());
-	}
-
+	
 	public abstract  void addNode(GPSNode node);
 
 	protected GPSNode removeFirst() {

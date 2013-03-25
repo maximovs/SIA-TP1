@@ -21,8 +21,6 @@ public class AddGroup extends Group{
 		return equalsResult(r);
 	}
 
-
-
 	@Override
 	protected void generatePossibles() {
 		int[] values = new int[getBoardMax()];
@@ -31,7 +29,6 @@ public class AddGroup extends Group{
 		possibleLists = new ArrayList<List<Integer>>();
 		generatePossibles(values, 0, getResult(), new LinkedList<Integer>());
 	}
-
 
 	@SuppressWarnings("unchecked")
 	private void generatePossibles(int[] values, int index, int sum, 

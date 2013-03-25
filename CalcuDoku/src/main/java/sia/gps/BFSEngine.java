@@ -11,5 +11,5 @@ public class BFSEngine extends GPSEngine{
 		Queue<GPSNode> queue = (Queue<GPSNode>) open;
 		queue.offer(node);
 	}
-
+	
 }

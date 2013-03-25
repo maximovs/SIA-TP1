@@ -17,12 +17,6 @@ public class AStarEngine extends GPSEngine{
 				return 1;
 			}
 		});
-//		open = new PriorityQueue<GPSNode>(INITIAL_SIZE, new Comparator<GPSNode>() {
-//			@Override
-//			public int compare(GPSNode node1, GPSNode node2) {
-//				return ((node1.f() != node2.f()) ? node1.f()-node2.f() : node1.h() - node2.h());
-//			}
-//		});
 	}
 	
 	@Override

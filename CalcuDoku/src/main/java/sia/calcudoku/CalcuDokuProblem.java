@@ -13,9 +13,9 @@ import sia.parser.Parser;
 
 public class CalcuDokuProblem implements GPSProblem {
 
-	Board board;
-	int limit;
-	Heuristic h;
+	private Board board;
+	private int limit;
+	private Heuristic h;
 
 	public CalcuDokuProblem(String levelFile,int limit, Heuristic h){
 		super();
@@ -47,14 +47,15 @@ public class CalcuDokuProblem implements GPSProblem {
 	public Integer getHValue(GPSState state) {
 		CalcuDokuState st = (CalcuDokuState) state;
 		st.updateProblem(this);
+		Board board = st.getBoard();
 		switch(h){
-		case groups:
-			return st.getBoard().groupsLeft();
-		case rowsNCols:
-			return st.getBoard().rowsAndColsLeft();
-		case both:
+		case GROUPS:
+			return (board.getSize()*board.getSize()*board.groupsLeft())/board.totalGroups();
+		case ROWSNCOLS:
+			return (board.rowsAndColsLeft()*board.rowsAndColsLeft())/4;
+		case BOTH:
 		default:
-			return st.getBoard().rowsAndColsLeft() +st.getBoard().groupsLeft();
+			return Math.max((board.getSize()*board.getSize()*board.groupsLeft())/board.totalGroups(),(board.rowsAndColsLeft()*board.rowsAndColsLeft())/4);
 		}
 	}
 

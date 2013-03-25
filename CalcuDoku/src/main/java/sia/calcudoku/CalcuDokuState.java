@@ -6,10 +6,10 @@ import sia.gps.api.GPSState;
 
 public class CalcuDokuState implements GPSState {
 
-	Board board;
+	private Board board;
 	private int[][] values;
-	int depth = 0;
-	int last = 0;
+	private int depth = 0;
+	private int last = 0;
 
 	public CalcuDokuState(Board board) {
 		this.board = board;
@@ -18,7 +18,7 @@ public class CalcuDokuState implements GPSState {
 
 	public CalcuDokuState(CalcuDokuState state, int value, int position) {
 		last = value;
-		setValues(state.values, state.values.length);
+		setValues(state.values);
 		this.board = state.board;
 		this.depth = state.depth+1;
 		values[position/values.length][position%values.length] = value;
@@ -48,8 +48,8 @@ public class CalcuDokuState implements GPSState {
 		return values;
 	}
 	
-	private void setValues(int[][] v, int size){
-		values = new int[size][size];
+	private void setValues(int[][] v){
+		values = new int[v.length][v.length];
 		for(int i=0; i<values.length; i++)
 			for(int j=0; j<values.length; j++)
 				values[i][j] = v[i][j];
@@ -66,8 +66,13 @@ public class CalcuDokuState implements GPSState {
 			for(int j=0; j<values.length; j++)
 				board.setCellValue(i, j, values[i][j]);
 	}
+	
 	public Board getBoard(){
 		return board;
+	}
+	
+	public int cellsLeft(){
+		return values.length*values.length - depth;
 	}
 
 	@Override
