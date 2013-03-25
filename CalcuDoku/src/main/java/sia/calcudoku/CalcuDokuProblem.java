@@ -52,10 +52,10 @@ public class CalcuDokuProblem implements GPSProblem {
 		case GROUPS:
 			return (st.cellsLeft()*board.groupsLeft())/board.totalGroups();
 		case ROWSNCOLS:
-			return (board.rowsAndColsLeft()*board.rowsAndColsLeft())/4;
+			return ((st.cellsLeft()*board.rowsAndColsLeft())/(board.getSize()*2));
 		case BOTH:
 		default:
-			return Math.max((st.cellsLeft()*board.groupsLeft())/board.totalGroups(),(board.rowsAndColsLeft()*board.rowsAndColsLeft())/4);
+			return Math.max((st.cellsLeft()*board.groupsLeft())/board.totalGroups(), ((st.cellsLeft()*board.rowsAndColsLeft())/(board.getSize()*2)));
 		}
 	}
 
