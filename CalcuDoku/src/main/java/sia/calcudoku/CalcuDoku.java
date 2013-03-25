@@ -21,7 +21,7 @@ public class CalcuDoku {
 			System.out.println(s);
 		}
 	
-		CalcuDokuProblem problem = new CalcuDokuProblem("src/main/resources/levels/"+args[1], Integer.parseInt(args[2]),Heuristic.valueOf(args[3].toUpperCase()));
+		CalcuDokuProblem problem = new CalcuDokuProblem("src/main/resources/levels/"+args[1], Integer.parseInt(args[2]),args.length>3?Heuristic.valueOf(args[3].toUpperCase()):Heuristic.BOTH);
 		GPSEngine engine = null;
 		long a = System.currentTimeMillis();
 		switch (args[0].toUpperCase()) {
