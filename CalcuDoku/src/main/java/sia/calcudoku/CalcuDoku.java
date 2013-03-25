@@ -15,10 +15,15 @@ public class CalcuDoku {
 		if (args == null || args.length < 3) {
 			System.out.println("Formato de argumentos invalido");
 			System.out.println("Ingrese [BFS|DFS|IDFS|HIDFS|Greedy|Astar] [QuadOp3x3|QuadOp4x4|QuadOp4x4tricky|5x5|QuadOp6x6|DualOp8x8] [width] [groups|rowsNCols|both] [limitIDFS]");
+			return;
 		}
 		for(String s:args){
 			System.out.println(s);
 		}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 3ea843542c3c540d08b34dd2dfab5c62a08bcb2a
 		CalcuDokuProblem problem = new CalcuDokuProblem("src/main/resources/levels/"+args[1], Integer.parseInt(args[2]),args.length>3?Heuristic.valueOf(args[3].toUpperCase()):Heuristic.BOTH);
 		GPSEngine engine = null;
 		long a = System.currentTimeMillis();
